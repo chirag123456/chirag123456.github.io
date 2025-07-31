@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= cv.personalInfo.name %> - <%= cv.personalInfo.title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="profile-section">
+                    <div class="profile-image">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="profile-info">
+                        <h1 class="name"><%= cv.personalInfo.name %></h1>
+                        <h2 class="title"><%= cv.personalInfo.title %></h2>
+                        <p class="summary"><%= cv.summary %></p>
+                    </div>
+                </div>
+                <div class="contact-section">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span><%= cv.personalInfo.email %></span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span><%= cv.personalInfo.phone %></span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span><%= cv.personalInfo.location %></span>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://<%= cv.personalInfo.linkedin %>" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://<%= cv.personalInfo.github %>" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://<%= cv.personalInfo.website %>" target="_blank">
+                            <i class="fas fa-globe"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-grid">
+                <!-- Left Column -->
+                <aside class="sidebar">
+                    <!-- Skills Section -->
+                    <section class="section">
+                        <h3 class="section-title">
+                            <i class="fas fa-code"></i>
+                            Technical Skills
+                        </h3>
+                        <div class="skills-grid">
+                            <% cv.skills.technical.forEach(skill => { %>
+                                <span class="skill-tag"><%= skill %></span>
+                            <% }) %>
+                        </div>
+                    </section>
+
+                    <!-- Management Skills -->
+                    <section class="section">
+                        <h3 class="section-title">
+                            <i class="fas fa-users"></i>
+                            Management Skills
+                        </h3>
+                        <div class="skills-grid">
+                            <% cv.skills.management.forEach(skill => { %>
+                                <span class="skill-tag management"><%= skill %></span>
+                            <% }) %>
+                        </div>
+                    </section>
+
+                    <!-- Languages -->
+                    <section class="section">
+                        <h3 class="section-title">
+                            <i class="fas fa-language"></i>
+                            Languages
+                        </h3>
+                        <div class="languages-list">
+                            <% cv.languages.forEach(lang => { %>
+                                <div class="language-item">
+                                    <span class="language-name"><%= lang.name %></span>
+                                    <span class="language-level"><%= lang.level %></span>
+                                </div>
+                            <% }) %>
+                        </div>
+                    </section>
+
+                    <!-- Certifications -->
+                    <section class="section">
+                        <h3 class="section-title">
+                            <i class="fas fa-certificate"></i>
+                            Certifications
+                        </h3>
+                        <ul class="certifications-list">
+                            <% cv.certifications.forEach(cert => { %>
+                                <li><%= cert %></li>
+                            <% }) %>
+                        </ul>
+                    </section>
+                </aside>
+
+                <!-- Right Column -->
+                <div class="main-column">
+                    <!-- Experience Section -->
+                    <section class="section">
+                        <h3 class="section-title">
+                            <i class="fas fa-briefcase"></i>
+                            Professional Experience
+                        </h3>
+                        <div class="timeline">
+                            <% cv.experience.forEach(job => { %>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <h4 class="job-title"><%= job.title %></h4>
+                                        <h5 class="company"><%= job.company %></h5>
+                                        <div class="job-meta">
+                                            <span class="period">
+                                                <i class="fas fa-calendar"></i>
+                                                <%= job.period %>
+                                            </span>
+                                            <span class="location">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                <%= job.location %>
+                                            </span>
+                                        </div>
+                                        <ul class="responsibilities">
+                                            <% job.responsibilities.forEach(resp => { %>
+                                                <li><%= resp %></li>
+                                            <% }) %>
+                                        </ul>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        </div>
+                    </section>
+
+                    <!-- Projects Section -->
+                    <section class="section">
+                        <h3 class="section-title">
+                            <i class="fas fa-project-diagram"></i>
+                            Key Projects
+                        </h3>
+                        <div class="projects-grid">
+                            <% cv.projects.forEach(project => { %>
+                                <div class="project-card">
+                                    <h4 class="project-name"><%= project.name %></h4>
+                                    <p class="project-description"><%= project.description %></p>
+                                    <div class="project-tech">
+                                        <% project.technologies.forEach(tech => { %>
+                                            <span class="tech-tag"><%= tech %></span>
+                                        <% }) %>
+                                    </div>
+                                    <ul class="project-highlights">
+                                        <% project.highlights.forEach(highlight => { %>
+                                            <li><%= highlight %></li>
+                                        <% }) %>
+                                    </ul>
+                                </div>
+                            <% }) %>
+                        </div>
+                    </section>
+
+                    <!-- Education Section -->
+                    <section class="section">
+                        <h3 class="section-title">
+                            <i class="fas fa-graduation-cap"></i>
+                            Education
+                        </h3>
+                        <div class="education-list">
+                            <% cv.education.forEach(edu => { %>
+                                <div class="education-item">
+                                    <h4 class="degree"><%= edu.degree %></h4>
+                                    <h5 class="institution"><%= edu.institution %></h5>
+                                    <div class="education-meta">
+                                        <span class="year">
+                                            <i class="fas fa-calendar"></i>
+                                            <%= edu.year %>
+                                        </span>
+                                        <span class="grade">
+                                            <i class="fas fa-star"></i>
+                                            <%= edu.grade %>
+                                        </span>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 <%= cv.personalInfo.name %>. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>
